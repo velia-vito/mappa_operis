@@ -48,8 +48,8 @@ dart_code_metrics:
     - member-ordering
     - newline-before-return
     - no-magic-number:
-        allowed: [360]
-        allow-only-once: true
+        allowed: [0]
+        ignore-instances: true
     - prefer-async-await
     - prefer-commenting-analyzer-ignores
     - prefer-conditional-expressions
