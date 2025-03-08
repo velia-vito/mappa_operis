@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the WorkUnit class from the interfaces library, for the Dart programming language.">
-  <title>WorkUnit class - interfaces library - Dart API</title>
+  <meta name="description" content="API docs for the Phase class from the units library, for the Dart programming language.">
+  <title>Phase class - units library - Dart API</title>
 
 
   
@@ -25,10 +25,10 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">mappa_operis</a></li>
-    <li><a href="../interfaces">interfaces.dart</a></li>
-    <li class="self-crumb">WorkUnit class</li>
+    <li><a href="../units">units.dart</a></li>
+    <li class="self-crumb">Phase class</li>
   </ol>
-  <div class="self-name">WorkUnit</div>
+  <div class="self-name">Phase</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,18 +48,16 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="interfaces&#47;interfaces-library-sidebar.html"
-    data-below-sidebar="interfaces&#47;WorkUnit-class-sidebar.html">
+    data-above-sidebar="units&#47;units-library-sidebar.html"
+    data-below-sidebar="units&#47;Phase-class-sidebar.html">
     <div>
-<h1><span class="kind-class">WorkUnit</span> class 
-    <a href="https://dart.dev/language/class-modifiers#abstract" class="feature feature-abstract" title="This type can not be directly constructed.">abstract</a>
-    <a href="https://dart.dev/language/class-modifiers#interface" class="feature feature-interface" title="This class can only be implemented (not extended or mixed in).">interface</a>
+<h1><span class="kind-class">Phase</span> class 
  
 </h1></div>
 
     
 <section class="desc markdown">
-  <p>The fundamental details any implementation of a task should have.</p>
+  <p>A task that can be scheduled and tracked.</p>
 </section>
 
 
@@ -68,13 +66,14 @@
         
 
         
+  <dt>Implemented types</dt>
+  <dd>
+    <ul class="comma-separated clazz-relationships">
+        <li><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></li>
+    </ul>
+  </dd>
         
 
-          <dt>Implementers</dt>
-          <dd><ul class="comma-separated clazz-relationships">
-              <li><a href="../units/Phase-class.html">Phase</a></li>
-              <li><a href="../units/Task-class.html">Task</a></li>
-          </ul></dd>
 
         
         
@@ -84,6 +83,17 @@
     </section>
 
     
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="Phase.create" class="callable">
+          <span class="name"><a href="../units/Phase/Phase.create.html">Phase.create</a></span><span class="signature">({<span class="parameter" id="create-param-title"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">title</span>, </span><span class="parameter" id="create-param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">description</span> = <span class="default-value">&#39;&#39;</span>, </span><span class="parameter" id="create-param-subTask"><span>required</span> <span class="type-annotation"><a href="../units/Task-class.html">Task</a></span> <span class="parameter-name">subTask</span></span>})</span>
+        </dt>
+        <dd>
+          Create a new task that starts today (local time-zone).
+        </dd>
+    </dl>
+  </section>
     
   <section
       class="summary offset-anchor"
@@ -91,73 +101,109 @@
     <h2>Properties</h2>
     <dl class="properties">
         <dt id="bufferInDays" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/bufferInDays.html">bufferInDays</a></span>
+  <span class="name"><a href="../units/Phase/bufferInDays.html">bufferInDays</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
   The number of days that the task can be delayed without delaying the project.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="canStart" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/canStart.html">canStart</a></span>
+  <span class="name"><a href="../units/Phase/canStart.html">canStart</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
 <dd>
   Whether the task can start.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="completedDurationInDays" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/completedDurationInDays.html">completedDurationInDays</a></span>
+  <span class="name"><a href="../units/Phase/completedDurationInDays.html">completedDurationInDays</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
   The number of scheduled working days completed.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="completedWorkInHours" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/completedWorkInHours.html">completedWorkInHours</a></span>
+  <span class="name"><a href="../units/Phase/completedWorkInHours.html">completedWorkInHours</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
   The amount of work that has been completed.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="description" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/description.html">description</a></span>
+  <span class="name"><a href="../units/Phase/description.html">description</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   
 
 </dt>
 <dd>
   Explanation/Details of the task.
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="earliestStartDateAmongSuccessors" class="property">
+  <span class="name"><a href="../units/Phase/earliestStartDateAmongSuccessors.html">earliestStartDateAmongSuccessors</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span>
+  
+
+</dt>
+<dd>
+  Earliest start date among successors. <a href="../units/Phase/endDate.html">endDate</a> if no successors.
   <div class="features"><span class="feature">no setter</span></div>
 
 </dd>
 
         <dt id="endDate" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/endDate.html">endDate</a></span>
+  <span class="name"><a href="../units/Phase/endDate.html">endDate</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span>
   
 
 </dt>
 <dd>
   The date the task is expected to end to be completed on time.
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="firstIncompleteTask" class="property">
+  <span class="name"><a href="../units/Phase/firstIncompleteTask.html">firstIncompleteTask</a></span>
+  <span class="signature">&#8594; <a href="../units/Task-class.html">Task</a>?</span>
+  
+
+</dt>
+<dd>
+  First incomplete Task.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="firstTask" class="property">
+  <span class="name"><a href="../units/Phase/firstTask.html">firstTask</a></span>
+  <span class="signature">&#8594; <a href="../units/Task-class.html">Task</a></span>
+  
+
+</dt>
+<dd>
+  The task that starts first.
   <div class="features"><span class="feature">no setter</span></div>
 
 </dd>
@@ -175,110 +221,134 @@
 </dd>
 
         <dt id="id" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/id.html">id</a></span>
+  <span class="name"><a href="../units/Phase/id.html">id</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
   A unique identifier for the task.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="isCompleted" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/isCompleted.html">isCompleted</a></span>
+  <span class="name"><a href="../units/Phase/isCompleted.html">isCompleted</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
 <dd>
   Whether the task is completed.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="isCritical" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/isCritical.html">isCritical</a></span>
+  <span class="name"><a href="../units/Phase/isCritical.html">isCritical</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
 <dd>
   Whether the task is critical (any delay to task will delay the project).
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="isDelayed" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/isDelayed.html">isDelayed</a></span>
+  <span class="name"><a href="../units/Phase/isDelayed.html">isDelayed</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
 <dd>
   Whether the task is delayed (un-started past start date).
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="isOngoing" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/isOngoing.html">isOngoing</a></span>
+  <span class="name"><a href="../units/Phase/isOngoing.html">isOngoing</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
 <dd>
   Whether the task is ongoing.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="isOverdue" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/isOverdue.html">isOverdue</a></span>
+  <span class="name"><a href="../units/Phase/isOverdue.html">isOverdue</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
   
 
 </dt>
 <dd>
   Whether the task is overdue (ongoing past completion date).
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="lastTask" class="property">
+  <span class="name"><a href="../units/Phase/lastTask.html">lastTask</a></span>
+  <span class="signature">&#8594; <a href="../units/Task-class.html">Task</a></span>
+  
+
+</dt>
+<dd>
+  The task that ends last.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="latestEndDateAmongPredecessors" class="property">
+  <span class="name"><a href="../units/Phase/latestEndDateAmongPredecessors.html">latestEndDateAmongPredecessors</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span>
+  
+
+</dt>
+<dd>
+  Latest end date among predecessors. <a href="../units/Phase/startDate.html">startDate</a> if no predecessors.
   <div class="features"><span class="feature">no setter</span></div>
 
 </dd>
 
         <dt id="predecessors" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/predecessors.html">predecessors</a></span>
+  <span class="name"><a href="../units/Phase/predecessors.html">predecessors</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span>&gt;</span></span>
   
 
 </dt>
 <dd>
   Tasks that have to be completed before this task can start.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="remainingDurationInDays" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/remainingDurationInDays.html">remainingDurationInDays</a></span>
+  <span class="name"><a href="../units/Phase/remainingDurationInDays.html">remainingDurationInDays</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
   The number of scheduled working days remaining.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="remainingWorkInHours" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/remainingWorkInHours.html">remainingWorkInHours</a></span>
+  <span class="name"><a href="../units/Phase/remainingWorkInHours.html">remainingWorkInHours</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
   The amount of work that has not been completed.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
@@ -295,62 +365,74 @@
 </dd>
 
         <dt id="startDate" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/startDate.html">startDate</a></span>
+  <span class="name"><a href="../units/Phase/startDate.html">startDate</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span>
   
 
 </dt>
 <dd>
   The date the task is expected to start to be completed on time.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="successors" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/successors.html">successors</a></span>
+  <span class="name"><a href="../units/Phase/successors.html">successors</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span>&gt;</span></span>
   
 
 </dt>
 <dd>
   Tasks that can only start after this task is completed.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="title" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/title.html">title</a></span>
+  <span class="name"><a href="../units/Phase/title.html">title</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   
 
 </dt>
 <dd>
   A non-unique identifier for the task.
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="todaysTasks" class="property">
+  <span class="name"><a href="../units/Phase/todaysTasks.html">todaysTasks</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../units/Task-class.html">Task</a></span>&gt;</span>?</span>
+  
+
+</dt>
+<dd>
+  Task that should be work on today.
   <div class="features"><span class="feature">no setter</span></div>
 
 </dd>
 
         <dt id="totalDurationInDays" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/totalDurationInDays.html">totalDurationInDays</a></span>
+  <span class="name"><a href="../units/Phase/totalDurationInDays.html">totalDurationInDays</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
   Working Days.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="totalWorkInHours" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/totalWorkInHours.html">totalWorkInHours</a></span>
+  <span class="name"><a href="../units/Phase/totalWorkInHours.html">totalWorkInHours</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
   Working Hours.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
@@ -364,7 +446,7 @@
     <h2>Methods</h2>
     <dl class="callables">
         <dt id="addCompletedWorkHours" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/addCompletedWorkHours.html">addCompletedWorkHours</a></span><span class="signature">(<wbr><span class="parameter" id="addCompletedWorkHours-param-additionalWorkHours"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">additionalWorkHours</span></span>)
+  <span class="name"><a href="../units/Phase/addCompletedWorkHours.html">addCompletedWorkHours</a></span><span class="signature">(<wbr><span class="parameter" id="addCompletedWorkHours-param-additionalWorkHours"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">additionalWorkHours</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -372,12 +454,12 @@
 </dt>
 <dd>
   Update the amount of work completed. (Add's to the current amount).
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="addPredecessor" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/addPredecessor.html">addPredecessor</a></span><span class="signature">(<wbr><span class="parameter" id="addPredecessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
+  <span class="name"><a href="../units/Phase/addPredecessor.html">addPredecessor</a></span><span class="signature">(<wbr><span class="parameter" id="addPredecessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -385,12 +467,25 @@
 </dt>
 <dd>
   Add predecessor to the task.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="addSubTask" class="callable">
+  <span class="name"><a href="../units/Phase/addSubTask.html">addSubTask</a></span><span class="signature">(<wbr><span class="parameter" id="addSubTask-param-task"><span class="type-annotation"><a href="../units/Task-class.html">Task</a></span> <span class="parameter-name">task</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Add a sub-task to the phase.
   
 
 </dd>
 
         <dt id="addSuccessor" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/addSuccessor.html">addSuccessor</a></span><span class="signature">(<wbr><span class="parameter" id="addSuccessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
+  <span class="name"><a href="../units/Phase/addSuccessor.html">addSuccessor</a></span><span class="signature">(<wbr><span class="parameter" id="addSuccessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -398,7 +493,7 @@
 </dt>
 <dd>
   Add successor to the task.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
@@ -416,7 +511,7 @@
 </dd>
 
         <dt id="removePredecessor" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/removePredecessor.html">removePredecessor</a></span><span class="signature">(<wbr><span class="parameter" id="removePredecessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
+  <span class="name"><a href="../units/Phase/removePredecessor.html">removePredecessor</a></span><span class="signature">(<wbr><span class="parameter" id="removePredecessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -424,12 +519,12 @@
 </dt>
 <dd>
   Remove predecessor from the task.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="removeSuccessor" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/removeSuccessor.html">removeSuccessor</a></span><span class="signature">(<wbr><span class="parameter" id="removeSuccessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
+  <span class="name"><a href="../units/Phase/removeSuccessor.html">removeSuccessor</a></span><span class="signature">(<wbr><span class="parameter" id="removeSuccessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -437,12 +532,12 @@
 </dt>
 <dd>
   Remove successor from the task.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="setBufferDaysTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setBufferDaysTo.html">setBufferDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setBufferDaysTo-param-newBufferDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newBufferDays</span></span>)
+  <span class="name"><a href="../units/Phase/setBufferDaysTo.html">setBufferDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setBufferDaysTo-param-newBufferDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newBufferDays</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -450,12 +545,12 @@
 </dt>
 <dd>
   Update the buffer days of the task.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="setDescriptionTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setDescriptionTo.html">setDescriptionTo</a></span><span class="signature">(<wbr><span class="parameter" id="setDescriptionTo-param-newDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">newDescription</span></span>)
+  <span class="name"><a href="../units/Phase/setDescriptionTo.html">setDescriptionTo</a></span><span class="signature">(<wbr><span class="parameter" id="setDescriptionTo-param-newDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">newDescription</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -463,12 +558,12 @@
 </dt>
 <dd>
   Update the description of the task.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="setStartDateTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setStartDateTo.html">setStartDateTo</a></span><span class="signature">(<wbr><span class="parameter" id="setStartDateTo-param-newStartDate"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">newStartDate</span></span>)
+  <span class="name"><a href="../units/Phase/setStartDateTo.html">setStartDateTo</a></span><span class="signature">(<wbr><span class="parameter" id="setStartDateTo-param-newStartDate"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">newStartDate</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -476,12 +571,12 @@
 </dt>
 <dd>
   Update the start date of the task.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="setTitleTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setTitleTo.html">setTitleTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTitleTo-param-newTitle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">newTitle</span></span>)
+  <span class="name"><a href="../units/Phase/setTitleTo.html">setTitleTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTitleTo-param-newTitle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">newTitle</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -489,12 +584,12 @@
 </dt>
 <dd>
   Update the title of the task.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="setTotalDurationInDaysTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setTotalDurationInDaysTo.html">setTotalDurationInDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTotalDurationInDaysTo-param-newTotalDurationDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newTotalDurationDays</span></span>)
+  <span class="name"><a href="../units/Phase/setTotalDurationInDaysTo.html">setTotalDurationInDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTotalDurationInDaysTo-param-newTotalDurationDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newTotalDurationDays</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -502,12 +597,12 @@
 </dt>
 <dd>
   Update the total duration of the task.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
         <dt id="setTotalWorkHoursTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setTotalWorkHoursTo.html">setTotalWorkHoursTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTotalWorkHoursTo-param-newTotalWorkHours"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newTotalWorkHours</span></span>)
+  <span class="name"><a href="../units/Phase/setTotalWorkHoursTo.html">setTotalWorkHoursTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTotalWorkHoursTo-param-newTotalWorkHours"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newTotalWorkHours</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -515,7 +610,7 @@
 </dt>
 <dd>
   Update the total amount of work required.
-  
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
@@ -569,11 +664,11 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">mappa_operis</a></li>
-    <li><a href="../interfaces">interfaces</a></li>
-    <li class="self-crumb">WorkUnit class</li>
+    <li><a href="../units">units</a></li>
+    <li class="self-crumb">Phase class</li>
 </ol>
 
-    <h5>interfaces library</h5>
+    <h5>units library</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div>
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

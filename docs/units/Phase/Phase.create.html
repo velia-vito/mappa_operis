@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the createSuccessor method from the Task class, for the Dart programming language.">
-  <title>createSuccessor method - Task class - units library - Dart API</title>
+  <meta name="description" content="API docs for the Phase.create constructor from Class Phase from the units library, for the Dart programming language.">
+  <title>Phase.create constructor - Phase - units library - Dart API</title>
 
 
   
@@ -26,10 +26,10 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">mappa_operis</a></li>
     <li><a href="../../units">units.dart</a></li>
-    <li><a href="../../units/Task-class.html">Task</a></li>
-    <li class="self-crumb">createSuccessor method</li>
+    <li><a href="../../units/Phase-class.html">Phase</a></li>
+    <li class="self-crumb">Phase.create constructor</li>
   </ol>
-  <div class="self-name">createSuccessor</div>
+  <div class="self-name">Phase.create</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -46,56 +46,35 @@
   </div>
 </header>
 <main>
-<div
-    id="dartdoc-main-content"
-    class="main-content"
-    data-above-sidebar="units&#47;Task-class-sidebar.html"
-    data-below-sidebar="">
-    <div>
-<h1><span class="kind-method">createSuccessor</span> method 
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="units&#47;Phase-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">Phase.create</span> constructor 
 </h1></div>
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="../../units/Task-class.html">Task</a></span>
-<span class="name ">createSuccessor</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="createSuccessor-param-title"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">title</span>, </span></li>
-<li><span class="parameter" id="createSuccessor-param-workInHours"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">workInHours</span>, </span></li>
-<li><span class="parameter" id="createSuccessor-param-durationInDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">durationInDays</span>, [</span></li>
-<li><span class="parameter" id="createSuccessor-param-bufferInDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">bufferInDays</span> = <span class="default-value">0</span>, </span></li>
-<li><span class="parameter" id="createSuccessor-param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">description</span> = <span class="default-value">&#39;&#39;</span>, </span></li>
-</ol>])
-
-      
-
+      <span class="name ">Phase.create</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="create-param-title"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">title</span>, </span></li>
+<li><span class="parameter" id="create-param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">description</span> = <span class="default-value">&#39;&#39;</span>, </span></li>
+<li><span class="parameter" id="create-param-subTask"><span>required</span> <span class="type-annotation"><a href="../../units/Task-class.html">Task</a></span> <span class="parameter-name">subTask</span>, </span></li>
+</ol>})
     </section>
     
 <section class="desc markdown">
-  <p>Create a new task that requires the completion of the current task to start.</p>
+  <p>Create a new task that starts today (local time-zone).</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Task createSuccessor(
-  String title,
-  int workInHours,
-  int durationInDays, [
-  int bufferInDays = 0,
-  String description = &#39;&#39;,
-]) {
-  var successor = Task.create(
-    title: title,
-    description: description,
-    workInHours: workInHours,
-    startDate: endDate,
-    durationInDays: durationInDays,
-    bufferInDays: bufferInDays,
-  );
-
-  _successors.add(successor);
-
-  return successor;
+  <pre class="language-dart"><code class="language-dart">Phase.create({required String title, String description = &#39;&#39;, required Task subTask}) {
+  _title = title;
+  _description = description;
+  _tasks.add(subTask);
 }</code></pre>
 </section>
 
@@ -111,15 +90,15 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">mappa_operis</a></li>
     <li><a href="../../units">units</a></li>
-    <li><a href="../../units/Task-class.html">Task</a></li>
-    <li class="self-crumb">createSuccessor method</li>
+    <li><a href="../../units/Phase-class.html">Phase</a></li>
+    <li class="self-crumb">Phase.create constructor</li>
 </ol>
 
-    <h5>Task class</h5>
+    <h5>Phase class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
-  </div><!--/.sidebar-offcanvas-->
+  </div><!--/.sidebar-offcanvas-left-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
-</div><!--/.sidebar-offcanvas-->
+  </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>
   <span class="no-break">

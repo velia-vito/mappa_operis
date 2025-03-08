@@ -95,10 +95,10 @@ class Task implements WorkUnit {
   // ===============================.
 
   @override
-  List<WorkUnit> get predecessors => _predecessors;
+  List<Task> get predecessors => _predecessors;
 
   @override
-  List<WorkUnit> get successors => _successors;
+  List<Task> get successors => _successors;
 
   // ===============================
   // ==== Flags, Internal Logic ====
@@ -157,7 +157,7 @@ class Task implements WorkUnit {
     _bufferInDays = bufferInDays;
   }
 
-  @override
+  /// Create a new task that requires the completion of the current task to start.
   Task createSuccessor(
     String title,
     int workInHours,

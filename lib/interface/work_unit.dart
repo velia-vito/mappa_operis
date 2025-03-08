@@ -116,13 +116,4 @@ abstract interface class WorkUnit {
   // ===============================
   // =========== Utility ===========
   // ===============================.
-
-  /// Create a new successor task.
-  WorkUnit createSuccessor(
-    String title,
-    int workInHours,
-    int durationInDays, [
-    int bufferInDays = 0,
-    String description = '',
-  ]);
 }

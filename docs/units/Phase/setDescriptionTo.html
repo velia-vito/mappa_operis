@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the createSuccessor method from the Task class, for the Dart programming language.">
-  <title>createSuccessor method - Task class - units library - Dart API</title>
+  <meta name="description" content="API docs for the setDescriptionTo method from the Phase class, for the Dart programming language.">
+  <title>setDescriptionTo method - Phase class - units library - Dart API</title>
 
 
   
@@ -26,10 +26,10 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">mappa_operis</a></li>
     <li><a href="../../units">units.dart</a></li>
-    <li><a href="../../units/Task-class.html">Task</a></li>
-    <li class="self-crumb">createSuccessor method</li>
+    <li><a href="../../units/Phase-class.html">Phase</a></li>
+    <li class="self-crumb">setDescriptionTo method</li>
   </ol>
-  <div class="self-name">createSuccessor</div>
+  <div class="self-name">setDescriptionTo</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -49,53 +49,38 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="units&#47;Task-class-sidebar.html"
+    data-above-sidebar="units&#47;Phase-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">createSuccessor</span> method 
+<h1><span class="kind-method">setDescriptionTo</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="../../units/Task-class.html">Task</a></span>
-<span class="name ">createSuccessor</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="createSuccessor-param-title"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">title</span>, </span></li>
-<li><span class="parameter" id="createSuccessor-param-workInHours"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">workInHours</span>, </span></li>
-<li><span class="parameter" id="createSuccessor-param-durationInDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">durationInDays</span>, [</span></li>
-<li><span class="parameter" id="createSuccessor-param-bufferInDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">bufferInDays</span> = <span class="default-value">0</span>, </span></li>
-<li><span class="parameter" id="createSuccessor-param-description"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">description</span> = <span class="default-value">&#39;&#39;</span>, </span></li>
-</ol>])
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
+<span class="returntype">void</span>
+<span class="name ">setDescriptionTo</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="setDescriptionTo-param-newDescription"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">newDescription</span></span></li>
+</ol>)
 
-      
+      <div class="features"><span class="feature">override</span></div>
 
     </section>
     
 <section class="desc markdown">
-  <p>Create a new task that requires the completion of the current task to start.</p>
+  <p>Update the description of the task.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Task createSuccessor(
-  String title,
-  int workInHours,
-  int durationInDays, [
-  int bufferInDays = 0,
-  String description = &#39;&#39;,
-]) {
-  var successor = Task.create(
-    title: title,
-    description: description,
-    workInHours: workInHours,
-    startDate: endDate,
-    durationInDays: durationInDays,
-    bufferInDays: bufferInDays,
-  );
-
-  _successors.add(successor);
-
-  return successor;
+  <pre class="language-dart"><code class="language-dart">@override
+void setDescriptionTo(String newDescription) {
+  _description = newDescription;
 }</code></pre>
 </section>
 
@@ -111,11 +96,11 @@
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">mappa_operis</a></li>
     <li><a href="../../units">units</a></li>
-    <li><a href="../../units/Task-class.html">Task</a></li>
-    <li class="self-crumb">createSuccessor method</li>
+    <li><a href="../../units/Phase-class.html">Phase</a></li>
+    <li class="self-crumb">setDescriptionTo method</li>
 </ol>
 
-    <h5>Task class</h5>
+    <h5>Phase class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
