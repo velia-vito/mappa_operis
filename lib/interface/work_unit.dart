@@ -1,8 +1,8 @@
 // ignore_for_file: member-ordering
 
-part of '../interfaces.dart';
+part of 'interfaces.dart';
 
-/// The fundamental details any implementation of a task should have.
+/// The fundamental details any implementation any Piece of Work should have.
 abstract interface class WorkUnit {
   /// A unique identifier for the task.
   int get id;
@@ -30,14 +30,8 @@ abstract interface class WorkUnit {
   /// The amount of work that has been completed.
   int get completedWorkInHours;
 
-  /// Update the amount of work completed. (Add's to the current amount).
-  void addCompletedWorkHours(int additionalWorkHours);
-
   /// Working Hours.
   int get totalWorkInHours;
-
-  /// Update the total amount of work required.
-  void setTotalWorkHoursTo(int newTotalWorkHours);
 
   /// The amount of work that has not been completed.
   int get remainingWorkInHours;
@@ -48,26 +42,39 @@ abstract interface class WorkUnit {
   /// Working Days.
   int get totalDurationInDays;
 
-  /// Update the total duration of the task.
-  void setTotalDurationInDaysTo(int newTotalDurationDays);
-
   /// The number of scheduled working days remaining.
   int get remainingDurationInDays;
 
-  /// The number of days that the task can be delayed without delaying the project.
-  int get bufferInDays;
+  /// The number of days that the task can be delayed without delaying the project by virtue of its
+  /// dependencies and dependents.
+  int get inherentBufferInDays;
+
+  /// The number of additional days assigned as a buffer period. (is considered part of the task
+  /// duration, and is not considered while calculating [inherentBufferInDays] or [isCritical]).
+  int get assignedBufferInDays;
+
+  /// Total buffer time available.
+  int get totalBufferInDays;
 
   /// Update the buffer days of the task.
-  void setBufferDaysTo(int newBufferDays);
+  void setAssignedBufferInDaysTo(int newBufferDays);
 
   /// The date the task is expected to start to be completed on time.
   DateTime get startDate;
 
-  /// Update the start date of the task.
-  void setStartDateTo(DateTime newStartDate);
-
-  /// The date the task is expected to end to be completed on time.
+  /// The date the task is expected to end to be completed on time. (includes
+  /// [assignedBufferInDays]).
   DateTime get endDate;
+
+  // ===============================
+  // =========== Utility ===========
+  // ===============================.
+
+  /// Latest end date among predecessors. [startDate] if no predecessors.
+  DateTime get latestEndDateAmongPredecessors;
+
+  /// Earliest start date among successors. [endDate] if no successors.
+  DateTime get earliestStartDateAmongSuccessors;
 
   // ===============================
   // === InterTask Relationships ===
@@ -112,8 +119,4 @@ abstract interface class WorkUnit {
 
   /// Whether the task is critical (any delay to task will delay the project).
   bool get isCritical;
-
-  // ===============================
-  // =========== Utility ===========
-  // ===============================.
 }

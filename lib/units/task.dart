@@ -1,7 +1,7 @@
-part of '../units.dart';
+part of 'units.dart';
 
 /// A task that can be scheduled and tracked.
-class Task implements WorkUnit {
+class Task implements TaskInterface {
   late String _title;
 
   late String _description;
@@ -58,11 +58,15 @@ class Task implements WorkUnit {
   int get remainingDurationInDays => -endDate.difference(DateTime.now()).inDays;
 
   @override
-  int get bufferInDays =>
-      _bufferInDays != 0
-          ? _bufferInDays
-          : earliestStartDateAmongSuccessors.difference(latestEndDateAmongPredecessors).inDays -
-              _durationInDays;
+  int get inherentBufferInDays =>
+      earliestStartDateAmongSuccessors.difference(latestEndDateAmongPredecessors).inDays -
+      _durationInDays;
+
+  @override
+  int get assignedBufferInDays => _bufferInDays;
+
+  @override
+  int get totalBufferInDays => inherentBufferInDays + assignedBufferInDays;
 
   @override
   DateTime get startDate => _startDate;
@@ -74,7 +78,7 @@ class Task implements WorkUnit {
   // =========== Utility ===========
   // ===============================.
 
-  /// Latest end date among predecessors. [startDate] if no predecessors.
+  @override
   DateTime get latestEndDateAmongPredecessors =>
       _predecessors.isEmpty
           ? _startDate
@@ -82,7 +86,7 @@ class Task implements WorkUnit {
               .reduce((taskA, taskB) => taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB)
               .endDate;
 
-  /// Earliest start date among successors. [endDate] if no successors.
+  @override
   DateTime get earliestStartDateAmongSuccessors =>
       _successors.isEmpty
           ? endDate
@@ -124,7 +128,7 @@ class Task implements WorkUnit {
   ///
   /// ### Note
   /// 1. Tasks that have no predecessors or successors are not considered critical.
-  bool get isCritical => bufferInDays <= 0;
+  bool get isCritical => inherentBufferInDays <= 0;
 
   /// Create a new task that starts today (local time-zone).
   Task.create({
@@ -219,7 +223,7 @@ class Task implements WorkUnit {
   }
 
   @override
-  void setBufferDaysTo(int newBufferDays) {
+  void setAssignedBufferInDaysTo(int newBufferDays) {
     _bufferInDays = newBufferDays;
   }
 

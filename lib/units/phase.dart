@@ -1,7 +1,7 @@
-part of '../units.dart';
+part of 'units.dart';
 
 /// A task that can be scheduled and tracked.
-class Phase implements WorkUnit {
+class Phase implements PhaseInterface {
   late String _title;
 
   late String _description;
@@ -53,23 +53,27 @@ class Phase implements WorkUnit {
   int get remainingDurationInDays => lastTask.endDate.difference(DateTime.now()).inDays;
 
   @override
-  int get bufferInDays =>
-      _bufferInDays != 0
-          ? _bufferInDays
-          : earliestStartDateAmongSuccessors.difference(latestEndDateAmongPredecessors).inDays -
-              totalDurationInDays;
+  int get inherentBufferInDays =>
+      earliestStartDateAmongSuccessors.difference(latestEndDateAmongPredecessors).inDays -
+      totalDurationInDays;
+
+  @override
+  int get assignedBufferInDays => _bufferInDays;
+
+  @override
+  int get totalBufferInDays => inherentBufferInDays + assignedBufferInDays;
 
   @override
   DateTime get startDate => firstTask.startDate;
 
   @override
-  DateTime get endDate => lastTask.endDate;
+  DateTime get endDate => lastTask.endDate.add(Duration(days: assignedBufferInDays));
 
   // ===============================
   // =========== Utility ===========
   // ===============================.
 
-  /// Latest end date among predecessors. [startDate] if no predecessors.
+  @override
   DateTime get latestEndDateAmongPredecessors =>
       predecessors.isEmpty
           ? startDate
@@ -77,7 +81,7 @@ class Phase implements WorkUnit {
               .reduce((taskA, taskB) => taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB)
               .endDate;
 
-  /// Earliest start date among successors. [endDate] if no successors.
+  @override
   DateTime get earliestStartDateAmongSuccessors =>
       successors.isEmpty
           ? endDate
@@ -95,27 +99,28 @@ class Phase implements WorkUnit {
   @override
   List<WorkUnit> get successors => _successors;
 
-  /// The task that ends last.
-  Task get lastTask =>
-      _tasks.reduce((taskA, taskB) => taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB);
-
   /// The task that starts first.
+  @override
   Task get firstTask =>
       _tasks.reduce((taskA, taskB) => taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB);
 
-  /// First incomplete Task.
-  Task? get firstIncompleteTask {
-    for (var task in _tasks) {
-      if (!task.isCompleted) {
-        return task;
-      }
-    }
+  /// The task that ends last.
+  @override
+  Task get lastTask =>
+      _tasks.reduce((taskA, taskB) => taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB);
 
-    return null;
-  }
+  @override
+  List<Task> get incompleteTasks => _tasks.where((task) => !task.isCompleted).toList();
+
+  @override
+  List<Task> get delayedTasks => _tasks.where((task) => task.isDelayed).toList();
+
+  @override
+  List<Task> get overdueTasks => _tasks.where((task) => task.isOverdue).toList();
 
   /// Task that should be work on today.
-  List<Task>? get todaysTasks =>
+  @override
+  List<Task> get todaysTasks =>
       _tasks.where((task) => task.startDate.isBefore(DateTime.now()) && !task.isCompleted).toList();
 
   // ===============================
@@ -142,7 +147,7 @@ class Phase implements WorkUnit {
   ///
   /// ### Note
   /// 1. Tasks that have no predecessors or successors are not considered critical.
-  bool get isCritical => bufferInDays <= 0;
+  bool get isCritical => inherentBufferInDays <= 0;
 
   /// Create a new task that starts today (local time-zone).
   Phase.create({required String title, String description = '', required Task subTask}) {
@@ -152,15 +157,26 @@ class Phase implements WorkUnit {
   }
 
   /// Add a sub-task to the phase.
-  void addSubTask(Task task) {
+  @override
+  void addSubTask(TaskInterface task) {
     _tasks
-      ..add(task)
+      ..add(task as Task)
       ..sort((taskA, taskB) => taskA.startDate.compareTo(taskB.startDate));
   }
 
   @override
-  void addCompletedWorkHours(int additionalWorkHours) {
-    throw UnsupportedError('Completed work hours of a Phase are derived from its sub-tasks.');
+  void setTitleTo(String newTitle) {
+    _title = newTitle;
+  }
+
+  @override
+  void setDescriptionTo(String newDescription) {
+    _description = newDescription;
+  }
+
+  @override
+  void setAssignedBufferInDaysTo(int newBufferInDays) {
+    _bufferInDays = newBufferInDays;
   }
 
   @override
@@ -195,35 +211,5 @@ class Phase implements WorkUnit {
   void removeSuccessor(WorkUnit task) {
     // ignore: avoid-collection-methods-with-unrelated-types, as non-tasks are just ignored by `list.remove`.
     var _ = _successors.remove(task);
-  }
-
-  @override
-  void setBufferDaysTo(int newBufferDays) {
-    _bufferInDays = newBufferDays;
-  }
-
-  @override
-  void setDescriptionTo(String newDescription) {
-    _description = newDescription;
-  }
-
-  @override
-  void setStartDateTo(DateTime newStartDate) {
-    throw UnsupportedError('Start date of a Phase is derived from its sub-tasks.');
-  }
-
-  @override
-  void setTitleTo(String newTitle) {
-    _title = newTitle;
-  }
-
-  @override
-  void setTotalDurationInDaysTo(int newTotalDurationDays) {
-    throw UnsupportedError('Duration of a Phase is derived from its sub-tasks.');
-  }
-
-  @override
-  void setTotalWorkHoursTo(int newTotalWorkHours) {
-    throw UnsupportedError('Total work hours of a Phase is derived from its sub-tasks.');
   }
 }
