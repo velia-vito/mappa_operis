@@ -1,6 +1,6 @@
 // ignore_for_file: member-ordering
 
-part of 'interfaces.dart';
+part of '../interfaces.dart';
 
 /// The fundamental details any implementation any Piece of Work should have.
 abstract interface class WorkUnit {

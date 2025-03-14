@@ -1,4 +1,4 @@
-part of 'interfaces.dart';
+part of '../interfaces.dart';
 
 /// A group of tasks that are related, i.e. Phases.
 abstract interface class PhaseInterface extends WorkUnit {
