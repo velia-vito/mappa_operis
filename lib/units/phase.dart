@@ -1,6 +1,7 @@
 part of 'units.dart';
 
 /// A task that can be scheduled and tracked.
+@TrackClass()
 class Phase implements PhaseInterface {
   late String _title;
 
@@ -38,23 +39,29 @@ class Phase implements PhaseInterface {
       _tasks.fold<int>(0, (sum, task) => sum + task.completedWorkInHours);
 
   @override
-  int get totalWorkInHours => _tasks.fold<int>(0, (sum, task) => sum + task.totalWorkInHours);
+  int get totalWorkInHours =>
+      _tasks.fold<int>(0, (sum, task) => sum + task.totalWorkInHours);
 
   @override
   int get remainingWorkInHours => totalWorkInHours - completedWorkInHours;
 
   @override
-  int get completedDurationInDays => DateTime.now().difference(startDate).inDays;
+  int get completedDurationInDays =>
+      DateTime.now().difference(startDate).inDays;
 
   @override
-  int get totalDurationInDays => firstTask.startDate.difference(lastTask.endDate).inDays;
+  int get totalDurationInDays =>
+      firstTask.startDate.difference(lastTask.endDate).inDays;
 
   @override
-  int get remainingDurationInDays => lastTask.endDate.difference(DateTime.now()).inDays;
+  int get remainingDurationInDays =>
+      lastTask.endDate.difference(DateTime.now()).inDays;
 
   @override
   int get inherentBufferInDays =>
-      earliestStartDateAmongSuccessors.difference(latestEndDateAmongPredecessors).inDays -
+      earliestStartDateAmongSuccessors
+          .difference(latestEndDateAmongPredecessors)
+          .inDays -
       totalDurationInDays;
 
   @override
@@ -67,7 +74,8 @@ class Phase implements PhaseInterface {
   DateTime get startDate => firstTask.startDate;
 
   @override
-  DateTime get endDate => lastTask.endDate.add(Duration(days: assignedBufferInDays));
+  DateTime get endDate =>
+      lastTask.endDate.add(Duration(days: assignedBufferInDays));
 
   // ===============================
   // =========== Utility ===========
@@ -78,7 +86,10 @@ class Phase implements PhaseInterface {
       predecessors.isEmpty
           ? startDate
           : predecessors
-              .reduce((taskA, taskB) => taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB)
+              .reduce(
+                (taskA, taskB) =>
+                    taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB,
+              )
               .endDate;
 
   @override
@@ -86,7 +97,10 @@ class Phase implements PhaseInterface {
       successors.isEmpty
           ? endDate
           : successors
-              .reduce((taskA, taskB) => taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB)
+              .reduce(
+                (taskA, taskB) =>
+                    taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB,
+              )
               .startDate;
 
   // ===============================
@@ -101,27 +115,37 @@ class Phase implements PhaseInterface {
 
   /// The task that starts first.
   @override
-  Task get firstTask =>
-      _tasks.reduce((taskA, taskB) => taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB);
+  Task get firstTask => _tasks.reduce(
+    (taskA, taskB) => taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB,
+  );
 
   /// The task that ends last.
   @override
-  Task get lastTask =>
-      _tasks.reduce((taskA, taskB) => taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB);
+  Task get lastTask => _tasks.reduce(
+    (taskA, taskB) => taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB,
+  );
 
   @override
-  List<Task> get incompleteTasks => _tasks.where((task) => !task.isCompleted).toList();
+  List<Task> get incompleteTasks =>
+      _tasks.where((task) => !task.isCompleted).toList();
 
   @override
-  List<Task> get delayedTasks => _tasks.where((task) => task.isDelayed).toList();
+  List<Task> get delayedTasks =>
+      _tasks.where((task) => task.isDelayed).toList();
 
   @override
-  List<Task> get overdueTasks => _tasks.where((task) => task.isOverdue).toList();
+  List<Task> get overdueTasks =>
+      _tasks.where((task) => task.isOverdue).toList();
 
   /// Task that should be work on today.
   @override
   List<Task> get todaysTasks =>
-      _tasks.where((task) => task.startDate.isBefore(DateTime.now()) && !task.isCompleted).toList();
+      _tasks
+          .where(
+            (task) =>
+                task.startDate.isBefore(DateTime.now()) && !task.isCompleted,
+          )
+          .toList();
 
   // ===============================
   // ==== Flags, Internal Logic ====
@@ -150,7 +174,11 @@ class Phase implements PhaseInterface {
   bool get isCritical => inherentBufferInDays <= 0;
 
   /// Create a new task that starts today (local time-zone).
-  Phase.create({required String title, String description = '', required Task subTask}) {
+  Phase.create({
+    required String title,
+    String description = '',
+    required Task subTask,
+  }) {
     _title = title;
     _description = description;
     _tasks.add(subTask);

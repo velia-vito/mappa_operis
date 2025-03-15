@@ -1,7 +1,6 @@
 /// Enforced interfaces for all aspects of Mappa Operis.
 library;
 
-
 // ======================
 // ===== Work Units =====
 // ======================.

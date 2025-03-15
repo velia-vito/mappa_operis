@@ -1,0 +1,46 @@
+builders:
+  annotated_class_enumerate:
+    import: "package:mappa_operis/services/json/json.dart"
+    builder_factories: ["annotatedClassEnumerate"]
+    build_to: source
+    build_extensions: { ".dart": [".ser.c.dart"] }
+    auto_apply: root_package
+    applies_builders: ["source_gen:combining_builder"]
+    # This builder should run before type_map_imports:
+    runs_before: ["mappa_operis:type_map_imports"]
+  
+  required_type_enumerate:
+    import: "package:mappa_operis/services/json/json.dart"
+    builder_factories: ["requiredTypeEnumerate"]
+    build_to: source
+    build_extensions: { ".dart": [".ser.c.dart"] }
+    auto_apply: root_package
+    applies_builders: ["source_gen:combining_builder"]
+    # This builder should run before type_map_imports:
+    runs_before: ["mappa_operis:type_map_imports"]
+
+  type_map_imports:
+    import: "package:mappa_operis/services/json/json.dart"
+    builder_factories: ["typeMapImports"]
+    build_to: source
+    build_extensions: { ".dart": [".ser.c.dart"] }
+    auto_apply: root_package
+    # Run before type_map:
+    runs_before: ["mappa_operis:type_map"]
+
+  type_map:
+    import: "package:mappa_operis/services/json/json.dart"
+    builder_factories: ["typeMap"]
+    build_to: source
+    build_extensions: { ".dart": [".ser.c.dart"] }
+    auto_apply: root_package
+    # Run before type_map_consolidate:
+    runs_before: ["mappa_operis:type_map_consolidate"]
+
+  type_map_consolidate:
+    import: "package:mappa_operis/services/json/json.dart"
+    builder_factories: ["typeMapConsolidate"]
+    build_to: source
+    build_extensions: { ".dart": [".ser.c.dart"] }
+    auto_apply: root_package
+    applies_builders: ["source_gen:combining_builder"]

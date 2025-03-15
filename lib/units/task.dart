@@ -1,6 +1,7 @@
 part of 'units.dart';
 
 /// A task that can be scheduled and tracked.
+@TrackClass()
 class Task implements TaskInterface {
   late String _title;
 
@@ -49,7 +50,8 @@ class Task implements TaskInterface {
   int get remainingWorkInHours => _totalWorkInHours - _completedWorkInHours;
 
   @override
-  int get completedDurationInDays => DateTime.now().difference(_startDate).inDays;
+  int get completedDurationInDays =>
+      DateTime.now().difference(_startDate).inDays;
 
   @override
   int get totalDurationInDays => _durationInDays;
@@ -59,7 +61,9 @@ class Task implements TaskInterface {
 
   @override
   int get inherentBufferInDays =>
-      earliestStartDateAmongSuccessors.difference(latestEndDateAmongPredecessors).inDays -
+      earliestStartDateAmongSuccessors
+          .difference(latestEndDateAmongPredecessors)
+          .inDays -
       _durationInDays;
 
   @override
@@ -72,7 +76,8 @@ class Task implements TaskInterface {
   DateTime get startDate => _startDate;
 
   @override
-  DateTime get endDate => _startDate.add(Duration(days: _durationInDays + _bufferInDays));
+  DateTime get endDate =>
+      _startDate.add(Duration(days: _durationInDays + _bufferInDays));
 
   // ===============================
   // =========== Utility ===========
@@ -83,7 +88,10 @@ class Task implements TaskInterface {
       _predecessors.isEmpty
           ? _startDate
           : _predecessors
-              .reduce((taskA, taskB) => taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB)
+              .reduce(
+                (taskA, taskB) =>
+                    taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB,
+              )
               .endDate;
 
   @override
@@ -91,7 +99,10 @@ class Task implements TaskInterface {
       _successors.isEmpty
           ? endDate
           : _successors
-              .reduce((taskA, taskB) => taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB)
+              .reduce(
+                (taskA, taskB) =>
+                    taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB,
+              )
               .startDate;
 
   // ===============================
