@@ -1,7 +1,7 @@
 part of 'units.dart';
 
 /// A task that can be scheduled and tracked.
-@TrackClass()
+@PickleClass(type: Phase, allFields: true)
 class Phase implements PhaseInterface {
   late String _title;
 

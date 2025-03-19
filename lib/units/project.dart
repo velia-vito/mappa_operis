@@ -1,7 +1,7 @@
 part of 'units.dart';
 
 /// A task that can be scheduled and tracked.
-@TrackClass()
+@PickleClass(type: Project, allFields: true)
 class Project implements ProjectInterface {
   late String _title;
 
