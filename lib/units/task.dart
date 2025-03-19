@@ -1,9 +1,8 @@
 part of 'units.dart';
 
 /// A task that can be scheduled and tracked.
-@PickleClass(type: Task)
+@PickleClass()
 class Task implements TaskInterface {
-  @PickleField()
   late String _title;
 
   late String _description;
@@ -31,10 +30,12 @@ class Task implements TaskInterface {
 
   /// A non-unique identifier for the task.
   @override
+  @PickleField()
   String get title => _title;
 
   /// Explanation/Details of the task.
   @override
+  @PickleField()
   String get description => _description;
 
   // ===============================
@@ -42,9 +43,11 @@ class Task implements TaskInterface {
   // ===============================.
 
   @override
+  @PickleField()
   int get completedWorkInHours => _completedWorkInHours;
 
   @override
+  @PickleField()
   int get totalWorkInHours => _totalWorkInHours;
 
   @override
@@ -71,6 +74,7 @@ class Task implements TaskInterface {
   int get totalBufferInDays => inherentBufferInDays + assignedBufferInDays;
 
   @override
+  @PickleField()
   DateTime get startDate => _startDate;
 
   @override

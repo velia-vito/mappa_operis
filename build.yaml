@@ -1,9 +1,17 @@
 builders:
   de_ser_tree:
     import: "package:mappa_operis/services/json/json.dart"
-    builder_factories: ["enumerationTreeBuilder"]
+    builder_factories: ["enumerationTreeBuilder1"]
     build_to: source
     build_extensions: { ".dart": [".should_not_generate_output.dart"] }
     auto_apply: root_package
     applies_builders: ["source_gen:combining_builder"]
-    runs_before: ["mappa_operis:type_map_imports"]
+    runs_before: ["mappa_operis:de_ser_trans"]
+  
+  de_ser_trans:
+    import: "package:mappa_operis/services/json/json.dart"
+    builder_factories: ["enumerationTreeBuilder2"]
+    build_to: source # Change to cache in production
+    build_extensions: { ".dart": [".deser.dart"] }
+    auto_apply: root_package
+    applies_builders: ["source_gen:combining_builder"]
