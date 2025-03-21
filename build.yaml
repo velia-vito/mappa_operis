@@ -2,7 +2,7 @@ builders:
   de_ser_tree:
     import: "package:mappa_operis/services/json/json.dart"
     builder_factories: ["enumerationTreeBuilder1"]
-    build_to: source
+    build_to: cache
     build_extensions: { ".dart": [".should_not_generate_output.dart"] }
     auto_apply: root_package
     applies_builders: ["source_gen:combining_builder"]

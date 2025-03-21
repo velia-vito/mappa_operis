@@ -30,12 +30,12 @@ class Task implements TaskInterface {
 
   /// A non-unique identifier for the task.
   @override
-  @PickleField()
+  @PickleField(field: 'title')
   String get title => _title;
 
   /// Explanation/Details of the task.
   @override
-  @PickleField()
+  @PickleField(field: 'description')
   String get description => _description;
 
   // ===============================
@@ -43,11 +43,11 @@ class Task implements TaskInterface {
   // ===============================.
 
   @override
-  @PickleField()
+  @PickleField(field: 'completedWorkInHours')
   int get completedWorkInHours => _completedWorkInHours;
 
   @override
-  @PickleField()
+  @PickleField(field: 'totalWorkInHours')
   int get totalWorkInHours => _totalWorkInHours;
 
   @override
@@ -74,7 +74,7 @@ class Task implements TaskInterface {
   int get totalBufferInDays => inherentBufferInDays + assignedBufferInDays;
 
   @override
-  @PickleField()
+  @PickleField(field: 'startDate')
   DateTime get startDate => _startDate;
 
   @override
