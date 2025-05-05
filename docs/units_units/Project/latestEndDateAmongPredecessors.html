@@ -86,7 +86,10 @@ DateTime get latestEndDateAmongPredecessors =&gt;
     predecessors.isEmpty
         ? startDate
         : predecessors
-            .reduce((taskA, taskB) =&gt; taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB)
+            .reduce(
+              (taskA, taskB) =&gt;
+                  taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB,
+            )
             .endDate;</code></pre>
 </section>
 

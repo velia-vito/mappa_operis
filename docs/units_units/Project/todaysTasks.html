@@ -83,7 +83,12 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 List&lt;WorkUnit&gt; get todaysTasks =&gt;
-    _tasks.where((task) =&gt; task.startDate.isBefore(DateTime.now()) &amp;&amp; !task.isCompleted).toList();</code></pre>
+    _tasks
+        .where(
+          (task) =&gt;
+              task.startDate.isBefore(DateTime.now()) &amp;&amp; !task.isCompleted,
+        )
+        .toList();</code></pre>
 </section>
 
   </section>

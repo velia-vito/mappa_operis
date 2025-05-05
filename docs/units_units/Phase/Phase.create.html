@@ -71,7 +71,11 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Phase.create({required String title, String description = &#39;&#39;, required Task subTask}) {
+  <pre class="language-dart"><code class="language-dart">Phase.create({
+  required String title,
+  String description = &#39;&#39;,
+  required Task subTask,
+}) {
   _title = title;
   _description = description;
   _tasks.add(subTask);

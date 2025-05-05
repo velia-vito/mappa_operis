@@ -84,7 +84,9 @@ dependencies and dependents.</p>
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 int get inherentBufferInDays =&gt;
-    earliestStartDateAmongSuccessors.difference(latestEndDateAmongPredecessors).inDays -
+    earliestStartDateAmongSuccessors
+        .difference(latestEndDateAmongPredecessors)
+        .inDays -
     totalDurationInDays;</code></pre>
 </section>
 

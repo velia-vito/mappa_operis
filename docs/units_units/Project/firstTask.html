@@ -82,8 +82,9 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
-WorkUnit get firstTask =&gt;
-    _tasks.reduce((taskA, taskB) =&gt; taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB);</code></pre>
+WorkUnit get firstTask =&gt; _tasks.reduce(
+  (taskA, taskB) =&gt; taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB,
+);</code></pre>
 </section>
 
   </section>

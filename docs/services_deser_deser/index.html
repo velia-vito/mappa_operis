@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="deser library API docs, for the Dart programming language.">
+  <title>deser library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">mappa_operis</a></li>
+    <li class="self-crumb">services\deser\deser.dart</li>
+  </ol>
+  <div class="self-name">deser</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar=""
+    data-below-sidebar="services_deser_deser&#47;services_deser_deser-library-sidebar.html">
+  
+    <div>
+      
+
+      <h1>
+        <span class="kind-library">services\deser\deser</span>
+        library 
+ 
+
+      </h1>
+    </div>
+
+    
+<section class="desc markdown">
+  <p>Deserialization / Serialization library</p>
+<h3 id="process">Process</h3>
+<ol>
+<li>
+<p>Take an Object <code>OBJ</code>.</p>
+</li>
+<li>
+<p>We set <code>OBJ</code> as a root-node on a graph.</p>
+</li>
+<li>
+<p>We Create a look-up table from <code>OBJ</code> to <code>OBJ_ID</code> &amp; <code>OBJ</code> to <code>OBJ_CONSTRUCTOR</code>.</p>
+</li>
+<li>
+<p>We recurse over <em>primary properties</em> (properties required at object creation) of <code>OBJ</code>.</p>
+</li>
+<li>
+<p>For every property-obj, if the abject exists in <code>OBJ-&gt;OBJ_ID</code> look-up table, we emit a
+reference to the object a.k.a <code>OBJ_REF</code>. If it doesn't exist, we create a new object and add
+it to the look-up table and emit <code>OBJ_REF</code>.</p>
+</li>
+<li>
+<p>Each property-obj is added to the graph as a sub-node. All property-objects are added as
+<code>OBJ_REF</code>s.</p>
+<ul>
+<li>
+<p>We consider only <em>primary properties</em> because they can't be cyclic. Think about it, lets say
+<code>OBJ_A</code> requires <code>OBJ_B</code>, and <code>OBJ_B</code> requires <code>OBJ_C</code>, and <code>OBJ_C</code> requires <code>OBJ_A</code> during
+its construction. This is not possible, because <code>OBJ_A</code> can't be constructed until <code>OBJ_B</code>
+is constructed, and <code>OBJ_B</code> can't be constructed until <code>OBJ_C</code> is constructed, and <code>OBJ_C</code>
+can't be constructed until <code>OBJ_A</code> is constructed – an impossible situation.</p>
+</li>
+<li>
+<p>Only Directed Acyclic Graphs have any meaningful topological sort. So, by only considering
+<em>primary properties</em> we can be sure that the graph is a Directed Acyclic Graph.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>We Obtain the <strong>Reverse Topological Sort</strong> of the graph, that is, each node (property)
+appears before all nodes (objects / property-objects) that depend on it.</p>
+<ul>
+<li>This simplifies deserialization, because if we just deserialize the objects in the order
+it appears on file (reverse topological sort), we basically will always have
+property-objects already deserialized before the parent object is deserialized.</li>
+</ul>
+</li>
+<li>
+<p>We go through the <strong>Topological Sort</strong> and update an <code>OBJ_ID -&gt; OBJ_SECONDARY_SETTER -&gt; SECONDARY_PROPERTY_OBJ_REF</code> look-up table. The additional objects added to the <code>OBJ -&gt; OBJ_ID</code>
+look-up table  &amp; <code>OBJ -&gt; OBJ_CONSTRUCTOR</code> look-up table are <strong>appended</strong> to the <strong>Reverse
+Topological Sort</strong>.</p>
+<ul>
+<li>This is done because the extra secondary properties are not required at object creation
+and to minimize memory usage, we can defer their deserialization till after object creation
+and before secondary property assignment.</li>
+</ul>
+</li>
+<li>
+<p>Save <code>OBJ -&gt; OBJ_ID</code>, <code>OBJ -&gt; OBJ_CONSTRUCTOR</code>, &amp; <code>OBJ_ID -&gt; OBJ_SECONDARY_SETTER -&gt; SECONDARY_PROPERTY_OBJ_REF</code> look-up tables to file. JSON-ify objects in the <strong>Reverse
+Topological Sort</strong> order and save them to file.</p>
+</li>
+</ol>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">mappa_operis</a></li>
+    <li class="self-crumb">services\deser\deser.dart</li>
+</ol>
+
+    <h5><span class="package-name">mappa_operis</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="../interface_interfaces">interface\interfaces</a></li>
+      <li><a href="../services_deser_deser">services\deser\deser</a></li>
+      <li><a href="../services_json_json">services\json\json</a></li>
+      <li><a href="../services_settings_settings">services\settings\settings</a></li>
+      <li><a href="../units_units">units\units</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>deser library</h5>
+  </div><!--/sidebar-offcanvas-right-->
+</main>
+<footer>
+  <span class="no-break">
+    mappa_operis
+      0.0.1
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

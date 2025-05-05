@@ -82,8 +82,9 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
-WorkUnit get lastTask =&gt;
-    _tasks.reduce((taskA, taskB) =&gt; taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB);</code></pre>
+WorkUnit get lastTask =&gt; _tasks.reduce(
+  (taskA, taskB) =&gt; taskA.endDate.isAfter(taskB.endDate) ? taskA : taskB,
+);</code></pre>
 </section>
 
   </section>

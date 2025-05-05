@@ -86,7 +86,10 @@ DateTime get earliestStartDateAmongSuccessors =&gt;
     successors.isEmpty
         ? endDate
         : successors
-            .reduce((taskA, taskB) =&gt; taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB)
+            .reduce(
+              (taskA, taskB) =&gt;
+                  taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB,
+            )
             .startDate;</code></pre>
 </section>
 
