@@ -10,6 +10,7 @@ linter:
   rules:
   - prefer_single_quotes
   - always_declare_return_types
+  - always_use_package_imports
   - public_member_api_docs
   - always_put_control_body_on_new_line
   - await_only_futures

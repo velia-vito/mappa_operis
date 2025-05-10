@@ -1,4 +1,4 @@
-part of '../interfaces.dart';
+part of '../../interfaces.dart';
 
 /// Minimum requirement of any setting implementation.
 abstract interface class SettingInterface<T> {

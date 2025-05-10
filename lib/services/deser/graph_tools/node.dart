@@ -1,11 +1,11 @@
-part of '../deser.dart';
+part of '../../deser.dart';
 
 class Node<T> {
   List<Node> children = [];
 
   final T value;
 
-  get type => T;
+  T get type => T;
 
   Node(this.value);
 

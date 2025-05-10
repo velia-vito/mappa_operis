@@ -59,7 +59,7 @@
 
     
 <section class="desc markdown">
-  <p>The fundamental details any implementation of a task should have.</p>
+  <p>The fundamental details any implementation any Piece of Work should have.</p>
 </section>
 
 
@@ -72,8 +72,9 @@
 
           <dt>Implementers</dt>
           <dd><ul class="comma-separated clazz-relationships">
-              <li><a href="../units/Phase-class.html">Phase</a></li>
-              <li><a href="../units/Task-class.html">Task</a></li>
+              <li><a href="../interfaces/PhaseInterface-class.html">PhaseInterface</a></li>
+              <li><a href="../interfaces/ProjectInterface-class.html">ProjectInterface</a></li>
+              <li><a href="../interfaces/TaskInterface-class.html">TaskInterface</a></li>
           </ul></dd>
 
         
@@ -90,14 +91,15 @@
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
-        <dt id="bufferInDays" class="property">
-  <span class="name"><a href="../interfaces/WorkUnit/bufferInDays.html">bufferInDays</a></span>
+        <dt id="assignedBufferInDays" class="property">
+  <span class="name"><a href="../interfaces/WorkUnit/assignedBufferInDays.html">assignedBufferInDays</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
-  The number of days that the task can be delayed without delaying the project.
+  The number of additional days assigned as a buffer period. (is considered part of the task
+duration, and is not considered while calculating <a href="../interfaces/WorkUnit/inherentBufferInDays.html">inherentBufferInDays</a> or <a href="../interfaces/WorkUnit/isCritical.html">isCritical</a>).
   <div class="features"><span class="feature">no setter</span></div>
 
 </dd>
@@ -150,6 +152,18 @@
 
 </dd>
 
+        <dt id="earliestStartDateAmongSuccessors" class="property">
+  <span class="name"><a href="../interfaces/WorkUnit/earliestStartDateAmongSuccessors.html">earliestStartDateAmongSuccessors</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span>
+  
+
+</dt>
+<dd>
+  Earliest start date among successors. <a href="../interfaces/WorkUnit/endDate.html">endDate</a> if no successors.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
         <dt id="endDate" class="property">
   <span class="name"><a href="../interfaces/WorkUnit/endDate.html">endDate</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span>
@@ -157,7 +171,8 @@
 
 </dt>
 <dd>
-  The date the task is expected to end to be completed on time.
+  The date the task is expected to end to be completed on time. (includes
+<a href="../interfaces/WorkUnit/assignedBufferInDays.html">assignedBufferInDays</a>).
   <div class="features"><span class="feature">no setter</span></div>
 
 </dd>
@@ -182,6 +197,19 @@
 </dt>
 <dd>
   A unique identifier for the task.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="inherentBufferInDays" class="property">
+  <span class="name"><a href="../interfaces/WorkUnit/inherentBufferInDays.html">inherentBufferInDays</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  The number of days that the task can be delayed without delaying the project by virtue of its
+dependencies and dependents.
   <div class="features"><span class="feature">no setter</span></div>
 
 </dd>
@@ -242,6 +270,18 @@
 </dt>
 <dd>
   Whether the task is overdue (ongoing past completion date).
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="latestEndDateAmongPredecessors" class="property">
+  <span class="name"><a href="../interfaces/WorkUnit/latestEndDateAmongPredecessors.html">latestEndDateAmongPredecessors</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span>
+  
+
+</dt>
+<dd>
+  Latest end date among predecessors. <a href="../interfaces/WorkUnit/startDate.html">startDate</a> if no predecessors.
   <div class="features"><span class="feature">no setter</span></div>
 
 </dd>
@@ -330,6 +370,18 @@
 
 </dd>
 
+        <dt id="totalBufferInDays" class="property">
+  <span class="name"><a href="../interfaces/WorkUnit/totalBufferInDays.html">totalBufferInDays</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  Total buffer time available.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
         <dt id="totalDurationInDays" class="property">
   <span class="name"><a href="../interfaces/WorkUnit/totalDurationInDays.html">totalDurationInDays</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
@@ -363,19 +415,6 @@
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
-        <dt id="addCompletedWorkHours" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/addCompletedWorkHours.html">addCompletedWorkHours</a></span><span class="signature">(<wbr><span class="parameter" id="addCompletedWorkHours-param-additionalWorkHours"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">additionalWorkHours</span></span>)
-    <span class="returntype parameter">&#8594; void</span>
-  </span>
-  
-
-</dt>
-<dd>
-  Update the amount of work completed. (Add's to the current amount).
-  
-
-</dd>
-
         <dt id="addPredecessor" class="callable">
   <span class="name"><a href="../interfaces/WorkUnit/addPredecessor.html">addPredecessor</a></span><span class="signature">(<wbr><span class="parameter" id="addPredecessor-param-task"><span class="type-annotation"><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></span> <span class="parameter-name">task</span></span>)
     <span class="returntype parameter">&#8594; void</span>
@@ -441,8 +480,8 @@
 
 </dd>
 
-        <dt id="setBufferDaysTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setBufferDaysTo.html">setBufferDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setBufferDaysTo-param-newBufferDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newBufferDays</span></span>)
+        <dt id="setAssignedBufferInDaysTo" class="callable">
+  <span class="name"><a href="../interfaces/WorkUnit/setAssignedBufferInDaysTo.html">setAssignedBufferInDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setAssignedBufferInDaysTo-param-newBufferDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newBufferDays</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -467,19 +506,6 @@
 
 </dd>
 
-        <dt id="setStartDateTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setStartDateTo.html">setStartDateTo</a></span><span class="signature">(<wbr><span class="parameter" id="setStartDateTo-param-newStartDate"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span> <span class="parameter-name">newStartDate</span></span>)
-    <span class="returntype parameter">&#8594; void</span>
-  </span>
-  
-
-</dt>
-<dd>
-  Update the start date of the task.
-  
-
-</dd>
-
         <dt id="setTitleTo" class="callable">
   <span class="name"><a href="../interfaces/WorkUnit/setTitleTo.html">setTitleTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTitleTo-param-newTitle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">newTitle</span></span>)
     <span class="returntype parameter">&#8594; void</span>
@@ -489,32 +515,6 @@
 </dt>
 <dd>
   Update the title of the task.
-  
-
-</dd>
-
-        <dt id="setTotalDurationInDaysTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setTotalDurationInDaysTo.html">setTotalDurationInDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTotalDurationInDaysTo-param-newTotalDurationDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newTotalDurationDays</span></span>)
-    <span class="returntype parameter">&#8594; void</span>
-  </span>
-  
-
-</dt>
-<dd>
-  Update the total duration of the task.
-  
-
-</dd>
-
-        <dt id="setTotalWorkHoursTo" class="callable">
-  <span class="name"><a href="../interfaces/WorkUnit/setTotalWorkHoursTo.html">setTotalWorkHoursTo</a></span><span class="signature">(<wbr><span class="parameter" id="setTotalWorkHoursTo-param-newTotalWorkHours"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newTotalWorkHours</span></span>)
-    <span class="returntype parameter">&#8594; void</span>
-  </span>
-  
-
-</dt>
-<dd>
-  Update the total amount of work required.
   
 
 </dd>
@@ -582,7 +582,7 @@
 <footer>
   <span class="no-break">
     mappa_operis
-      0.0.1
+      0.0.2+10May25
   </span>
   
 </footer>

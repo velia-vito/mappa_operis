@@ -1,4 +1,4 @@
-part of 'settings.dart';
+part of '../settings.dart';
 
 /// A setting field that only takes discrete values.
 class DiscreteSetting<T> implements SettingInterface<T> {

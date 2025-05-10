@@ -1,7 +1,6 @@
-part of 'units.dart';
+part of '../units.dart';
 
 /// A task that can be scheduled and tracked.
-@PickleClass()
 class Task implements TaskInterface {
   late String _title;
 
@@ -30,12 +29,10 @@ class Task implements TaskInterface {
 
   /// A non-unique identifier for the task.
   @override
-  @PickleField(field: 'title')
   String get title => _title;
 
   /// Explanation/Details of the task.
   @override
-  @PickleField(field: 'description')
   String get description => _description;
 
   // ===============================
@@ -43,11 +40,9 @@ class Task implements TaskInterface {
   // ===============================.
 
   @override
-  @PickleField(field: 'completedWorkInHours')
   int get completedWorkInHours => _completedWorkInHours;
 
   @override
-  @PickleField(field: 'totalWorkInHours')
   int get totalWorkInHours => _totalWorkInHours;
 
   @override
@@ -74,7 +69,6 @@ class Task implements TaskInterface {
   int get totalBufferInDays => inherentBufferInDays + assignedBufferInDays;
 
   @override
-  @PickleField(field: 'startDate')
   DateTime get startDate => _startDate;
 
   @override

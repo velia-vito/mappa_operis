@@ -62,10 +62,15 @@
   <section id="getter">
     <section class="multi-line-signature">
       
-      <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../units/Task-class.html">Task</a></span>&gt;</span>?</span>
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
+      <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../units/Task-class.html">Task</a></span>&gt;</span></span>
       get
       <span class="name ">todaysTasks</span>
-      
+      <div class="features"><span class="feature">override</span></div>
 
     </section>
     
@@ -76,8 +81,14 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">List&lt;Task&gt;? get todaysTasks =&gt;
-    _tasks.where((task) =&gt; task.startDate.isBefore(DateTime.now()) &amp;&amp; !task.isCompleted).toList();</code></pre>
+  <pre class="language-dart"><code class="language-dart">@override
+List&lt;Task&gt; get todaysTasks =&gt;
+    _tasks
+        .where(
+          (task) =&gt;
+              task.startDate.isBefore(DateTime.now()) &amp;&amp; !task.isCompleted,
+        )
+        .toList();</code></pre>
 </section>
 
   </section>
@@ -107,7 +118,7 @@
 <footer>
   <span class="no-break">
     mappa_operis
-      0.0.1
+      0.0.2+10May25
   </span>
   
 </footer>

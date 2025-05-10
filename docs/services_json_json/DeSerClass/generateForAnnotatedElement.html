@@ -108,20 +108,6 @@ void generateForAnnotatedElement(
                 .toStringValue()!,
     };
 
-    fInverseTree[element.name] = {
-      for (var field in element.accessors.where(
-        (field) =&gt; field.metadata.any(
-          (annotation) =&gt; _getMetadataDisplayName(annotation) == &#39;PickleField&#39;,
-        ),
-      ))
-        field.name:
-            field.metadata
-                .firstWhere((annotation) =&gt; _getMetadataDisplayName(annotation) == &#39;PickleField&#39;)
-                .computeConstantValue()!
-                .getField(&#39;reverseEngineerValue&#39;)!
-                .toFunctionValue()!,
-    };
-
     constructorTree[element.name] = annotation.read(&#39;constructor&#39;).stringValue;
   }
 

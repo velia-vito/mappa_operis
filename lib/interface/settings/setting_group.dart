@@ -1,1 +1,1 @@
-part of '../interfaces.dart';
+part of '../../interfaces.dart';

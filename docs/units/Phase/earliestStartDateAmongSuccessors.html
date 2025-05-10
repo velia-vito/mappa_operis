@@ -62,10 +62,15 @@
   <section id="getter">
     <section class="multi-line-signature">
       
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
       <span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/DateTime-class.html">DateTime</a></span>
       get
       <span class="name ">earliestStartDateAmongSuccessors</span>
-      
+      <div class="features"><span class="feature">override</span></div>
 
     </section>
     
@@ -76,11 +81,15 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">DateTime get earliestStartDateAmongSuccessors =&gt;
+  <pre class="language-dart"><code class="language-dart">@override
+DateTime get earliestStartDateAmongSuccessors =&gt;
     successors.isEmpty
         ? endDate
         : successors
-            .reduce((taskA, taskB) =&gt; taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB)
+            .reduce(
+              (taskA, taskB) =&gt;
+                  taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB,
+            )
             .startDate;</code></pre>
 </section>
 
@@ -111,7 +120,7 @@
 <footer>
   <span class="no-break">
     mappa_operis
-      0.0.1
+      0.0.2+10May25
   </span>
   
 </footer>

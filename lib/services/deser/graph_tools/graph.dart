@@ -1,4 +1,4 @@
-part of '../deser.dart';
+part of '../../deser.dart';
 
 class Graph {
   final Node root;

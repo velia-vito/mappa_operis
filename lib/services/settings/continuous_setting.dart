@@ -1,4 +1,4 @@
-part of 'settings.dart';
+part of '../settings.dart';
 
 /// A setting field that accepts a value from a continuous range.
 class ContinuousSetting<T> implements SettingInterface<T> {

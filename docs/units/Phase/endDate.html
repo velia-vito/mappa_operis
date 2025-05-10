@@ -75,14 +75,16 @@
     </section>
     
 <section class="desc markdown">
-  <p>The date the task is expected to end to be completed on time.</p>
+  <p>The date the task is expected to end to be completed on time. (includes
+<a href="../../units/Phase/assignedBufferInDays.html">assignedBufferInDays</a>).</p>
 </section>
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
-DateTime get endDate =&gt; lastTask.endDate;</code></pre>
+DateTime get endDate =&gt;
+    lastTask.endDate.add(Duration(days: assignedBufferInDays));</code></pre>
 </section>
 
   </section>
@@ -112,7 +114,7 @@ DateTime get endDate =&gt; lastTask.endDate;</code></pre>
 <footer>
   <span class="no-break">
     mappa_operis
-      0.0.1
+      0.0.2+10May25
   </span>
   
 </footer>

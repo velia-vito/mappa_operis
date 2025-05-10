@@ -1,4 +1,4 @@
-part of 'units.dart';
+part of '../units.dart';
 
 /// A task that can be scheduled and tracked.
 class Project implements ProjectInterface {

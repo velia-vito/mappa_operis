@@ -62,10 +62,15 @@
   <section id="getter">
     <section class="multi-line-signature">
       
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
       <span class="returntype"><a href="../../units/Task-class.html">Task</a></span>
       get
       <span class="name ">firstTask</span>
-      
+      <div class="features"><span class="feature">override</span></div>
 
     </section>
     
@@ -76,8 +81,10 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Task get firstTask =&gt;
-    _tasks.reduce((taskA, taskB) =&gt; taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB);</code></pre>
+  <pre class="language-dart"><code class="language-dart">@override
+Task get firstTask =&gt; _tasks.reduce(
+  (taskA, taskB) =&gt; taskA.startDate.isBefore(taskB.startDate) ? taskA : taskB,
+);</code></pre>
 </section>
 
   </section>
@@ -107,7 +114,7 @@
 <footer>
   <span class="no-break">
     mappa_operis
-      0.0.1
+      0.0.2+10May25
   </span>
   
 </footer>

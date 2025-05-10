@@ -69,7 +69,7 @@
   <dt>Implemented types</dt>
   <dd>
     <ul class="comma-separated clazz-relationships">
-        <li><a href="../interfaces/WorkUnit-class.html">WorkUnit</a></li>
+        <li><a href="../interfaces/TaskInterface-class.html">TaskInterface</a></li>
     </ul>
   </dd>
         
@@ -100,14 +100,15 @@
       id="instance-properties">
     <h2>Properties</h2>
     <dl class="properties">
-        <dt id="bufferInDays" class="property">
-  <span class="name"><a href="../units/Task/bufferInDays.html">bufferInDays</a></span>
+        <dt id="assignedBufferInDays" class="property">
+  <span class="name"><a href="../units/Task/assignedBufferInDays.html">assignedBufferInDays</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
   
 
 </dt>
 <dd>
-  The number of days that the task can be delayed without delaying the project.
+  The number of additional days assigned as a buffer period. (is considered part of the task
+duration, and is not considered while calculating <a href="../units/Task/inherentBufferInDays.html">inherentBufferInDays</a> or <a href="../units/Task/isCritical.html">isCritical</a>).
   <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
@@ -168,7 +169,7 @@
 </dt>
 <dd>
   Earliest start date among successors. <a href="../units/Task/endDate.html">endDate</a> if no successors.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
@@ -179,7 +180,8 @@
 
 </dt>
 <dd>
-  The date the task is expected to end to be completed on time.
+  The date the task is expected to end to be completed on time. (includes
+<a href="../units/Task/assignedBufferInDays.html">assignedBufferInDays</a>).
   <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
@@ -204,6 +206,19 @@
 </dt>
 <dd>
   A unique identifier for the task.
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="inherentBufferInDays" class="property">
+  <span class="name"><a href="../units/Task/inherentBufferInDays.html">inherentBufferInDays</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  The number of days that the task can be delayed without delaying the project by virtue of its
+dependencies and dependents.
   <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
@@ -276,7 +291,7 @@
 </dt>
 <dd>
   Latest end date among predecessors. <a href="../units/Task/startDate.html">startDate</a> if no predecessors.
-  <div class="features"><span class="feature">no setter</span></div>
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
 
@@ -360,6 +375,18 @@
 </dt>
 <dd>
   A non-unique identifier for the task.
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="totalBufferInDays" class="property">
+  <span class="name"><a href="../units/Task/totalBufferInDays.html">totalBufferInDays</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd>
+  Total buffer time available.
   <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
 
 </dd>
@@ -488,8 +515,8 @@
 
 </dd>
 
-        <dt id="setBufferDaysTo" class="callable">
-  <span class="name"><a href="../units/Task/setBufferDaysTo.html">setBufferDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setBufferDaysTo-param-newBufferDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newBufferDays</span></span>)
+        <dt id="setAssignedBufferInDaysTo" class="callable">
+  <span class="name"><a href="../units/Task/setAssignedBufferInDaysTo.html">setAssignedBufferInDaysTo</a></span><span class="signature">(<wbr><span class="parameter" id="setAssignedBufferInDaysTo-param-newBufferDays"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> <span class="parameter-name">newBufferDays</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
@@ -629,7 +656,7 @@
 <footer>
   <span class="no-break">
     mappa_operis
-      0.0.1
+      0.0.2+10May25
   </span>
   
 </footer>

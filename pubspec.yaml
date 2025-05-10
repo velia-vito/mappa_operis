@@ -1,6 +1,6 @@
 name: mappa_operis
 description: "Project Management, but for individuals."
-version: 0.0.1
+version: 0.0.2+10May25
 homepage:
 
 environment:

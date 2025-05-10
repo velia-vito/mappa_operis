@@ -1,4 +1,4 @@
-part of '../interfaces.dart';
+part of '../../interfaces.dart';
 
 /// Projects Interface — Identical to [PhaseInterface] but with different return types.
 abstract interface class ProjectInterface extends WorkUnit {

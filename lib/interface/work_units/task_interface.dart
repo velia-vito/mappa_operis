@@ -1,4 +1,4 @@
-part of '../interfaces.dart';
+part of '../../interfaces.dart';
 
 /// A task that can be scheduled and tracked.
 abstract interface class TaskInterface extends WorkUnit {

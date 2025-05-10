@@ -57,11 +57,16 @@
 
     <section class="multi-line-signature">
       
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
 <span class="returntype">void</span>
-<span class="name ">addSubTask</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="addSubTask-param-task"><span class="type-annotation"><a href="../../units/Task-class.html">Task</a></span> <span class="parameter-name">task</span></span></li>
+<span class="name ">addSubTask</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="addSubTask-param-task"><span class="type-annotation"><a href="../../interfaces/TaskInterface-class.html">TaskInterface</a></span> <span class="parameter-name">task</span></span></li>
 </ol>)
 
-      
+      <div class="features"><span class="feature">override</span></div>
 
     </section>
     
@@ -73,9 +78,10 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">void addSubTask(Task task) {
+  <pre class="language-dart"><code class="language-dart">@override
+void addSubTask(TaskInterface task) {
   _tasks
-    ..add(task)
+    ..add(task as Task)
     ..sort((taskA, taskB) =&gt; taskA.startDate.compareTo(taskB.startDate));
 }</code></pre>
 </section>
@@ -105,7 +111,7 @@
 <footer>
   <span class="no-break">
     mappa_operis
-      0.0.1
+      0.0.2+10May25
   </span>
   
 </footer>
